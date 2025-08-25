@@ -14,8 +14,6 @@ background-repeat: no-repeat;
 background-position: center;
 height: 93vh;
 width: 95%;
-
-
 }
 h1 {
 text-align: center;
@@ -76,53 +74,44 @@ border-radius: 30px;
 font-size: 1em;
 font-weight: bold;
 transition: all 0.3s ease;
-
 }
-
 a:hover {
 background: #C70039;
 transform: translateY(-5px);
 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-
 }
 a {
 padding: 10px 20px;
 font-size: 0.9em;
 }
-
 </style>
 </head>
 <body>
 <h1>Upload Your Dataset</h1>
 <div class="upload-form">
 <form id="uploadForm" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
-
 <input type="file" name="file" id="file" required>
 <button type="submit">Upload</button>
 </form>
 <!-- Success/Error Message -->
 <div id="message"></div>
 </div>
-
 <script>
 // File type validation for CSV and Excel files
 const form = document.getElementById('uploadForm');
 const datasetfile = document.getElementById('datasetfile');
 const messageDiv = document.getElementById('message');
-
 form.addEventListener('submit', function(event) {
 const file = datasetfile.files[0];
 const fileExtension = file.name.split('.').pop().toLowerCase();
-
 if (!['csv', 'xls', 'xlsx'].includes(fileExtension)) {
-event.preventDefault(); // Prevent form submission
+event.preventDefault(); 
 messageDiv.innerHTML = "<p class='error-message'>Please upload a valid CSV or Excel file.</p>";
 } else {
-messageDiv.innerHTML = ''; // Clear any previous error message
+messageDiv.innerHTML = ''; 
 }
 });
 </script>
 <center><a href="{{ url_for('index') }}">back to home</a></center>
-
 </body>
 </html>
