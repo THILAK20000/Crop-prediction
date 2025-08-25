@@ -5,13 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crop Prediction</title>
 <style>
-/* Reset default browser styles */
-* {
+{
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
-
 body {
 font-family: 'Arial', sans-serif;
 background-image:  url('{{ url_for('static', filename='m3.jpg') }}');
@@ -23,7 +21,6 @@ justify-content: center;
 align-items: center;
 height: 100vh;
 }
-
 h1 {
 text-align: center;
 font-family: 'Arial Rounded MT Bold', serif;
@@ -32,7 +29,6 @@ color: black;
 text-shadow:1px 1px white;
 margin-bottom: 30px;
 }
-
 form {
 width: 100%;
 max-width: 500px;
@@ -49,7 +45,6 @@ font-weight: bold;
 color: black;
 font-size: 16px;
 }
-
 input, select, button {
 width: 100%;
 padding: 12px;
@@ -60,12 +55,10 @@ font-size: 16px;
 font-weight:bold;
 transition: all 0.3s ease-in-out;
 }
-
 input:focus, select:focus, button:focus {
 border-color: #4CAF50;
 outline: none;
 }
-
 button {
 background-color: #4CAF50;
 color: white;
@@ -75,28 +68,22 @@ font-weight:bold;
 cursor: pointer;
 transition: background-color 0.3s ease;
 }
-
 button:hover {
 background-color: #45a049;
 }
-
 .readonly-input {
 background-color: #f4f4f4;
 cursor: not-allowed;
 }
-
-/* Responsive design */
 @media screen and (max-width: 768px) {
 form {
 padding: 20px;
 width: 90%;
 }
 }
-
 </style>
 </head>
 <body>
-
 <div class="form-container">
 <h1>Crop Prediction</h1>
 <form action="{{ url_for('predict') }}" method="POST">
@@ -108,7 +95,6 @@ width: 90%;
 <option value="Sandy">Sandy</option>
 <option value="Saline">Saline</option>
 </select>
-
 <label for="season">Weather:</label>
 <select name="season" id="season" required>
 <option value="">Select a season</option>
@@ -116,10 +102,8 @@ width: 90%;
 <option value="Rabi">Rabi (October - February)</option>
 <option value="Zaid">Zaid (March - May)</option>
 </select>
-
 <label for="state">State:</label>
 <input type="text" id="state" name="state" value="Tamil Nadu" readonly class="readonly-input">
-
 <label for="district">District:</label>
 <select id="district" name="district" required>
 <option value="">Select a district</option>
@@ -138,10 +122,8 @@ width: 90%;
 <option value="Kanchipuram">Kanchipuram</option>
 <option value="Nilgiri">Nilgiri</option>
 </select>
-
 <button type="submit">Predict</button>
 </form>
 </div>
-
 </body>
 </html>
