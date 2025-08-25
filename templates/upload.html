@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Dataset</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 20px;
+background-image:  url('{{ url_for('static', filename='m1.jpg') }}');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+height: 93vh;
+width: 95%;
+
+
+}
+h1 {
+text-align: center;
+font-size: 32px;
+color:#4CAF50;
+text-shadow:2px 1px white;
+margin-bottom: 20px;
+}
+.upload-form {
+width: 50%;
+margin: 0 auto;
+padding: 20px;
+border: 5px solid transparent;
+border-radius: 8px;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+background: rgba(0, 0, 0, 0.0);
+}
+.upload-form input[type="file"] {
+width: 95%;
+padding: 10px;
+margin-bottom: 20px;
+border: 5px solid transparent;
+border-radius: 5px;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.upload-form button {
+width: 100%;
+padding: 12px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+font-weight:bold;
+}
+.upload-form button:hover {
+background-color: #45a049;
+}
+.success-message {
+text-align: center;
+color: green;
+font-size: 18px;
+margin-top: 20px;
+}
+.error-message {
+text-align: center;
+color: red;
+font-size: 18px;
+margin-top: 20px;
+}
+a {
+display: inline-block;
+text-decoration: none;
+background: #FF5733;
+color: white;
+padding: 10px 25px;
+border-radius: 30px;
+font-size: 1em;
+font-weight: bold;
+transition: all 0.3s ease;
+
+}
+
+a:hover {
+background: #C70039;
+transform: translateY(-5px);
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+}
+a {
+padding: 10px 20px;
+font-size: 0.9em;
+}
+
+</style>
+</head>
+<body>
+<h1>Upload Your Dataset</h1>
+<div class="upload-form">
+<form id="uploadForm" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+
+<input type="file" name="file" id="file" required>
+<button type="submit">Upload</button>
+</form>
+<!-- Success/Error Message -->
+<div id="message"></div>
+</div>
+
+<script>
+// File type validation for CSV and Excel files
+const form = document.getElementById('uploadForm');
+const datasetfile = document.getElementById('datasetfile');
+const messageDiv = document.getElementById('message');
+
+form.addEventListener('submit', function(event) {
+const file = datasetfile.files[0];
+const fileExtension = file.name.split('.').pop().toLowerCase();
+
+if (!['csv', 'xls', 'xlsx'].includes(fileExtension)) {
+event.preventDefault(); // Prevent form submission
+messageDiv.innerHTML = "<p class='error-message'>Please upload a valid CSV or Excel file.</p>";
+} else {
+messageDiv.innerHTML = ''; // Clear any previous error message
+}
+});
+</script>
+<center><a href="{{ url_for('index') }}">back to home</a></center>
+
+</body>
+</html>

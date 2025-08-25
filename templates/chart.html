@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crop Production in Tamil Nadu</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 25px;
+background-color:lightgray;
+background-image:  url('{{ url_for('static', filename='m7.jpg') }}');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+height: 100vh;
+width: 95%;
+}
+h1 {
+text-align: center;
+font-size: 36px;
+font-weigth:bold;
+color: white;
+text-shadow:2px 1px black;
+}
+.container {
+width: 80%;
+margin: 0 auto;
+background: rgba(0, 0, 0, 0.0);
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+text-align: center;
+}
+canvas {
+width: 100%;
+height: 400px;
+max-width: 800px;
+}
+.description {
+margin: 20px 0;
+font-size: 18px;
+font-weight:bold;
+color: white;
+text-shadow:2px 2px black;
+}
+a {
+display: inline-block;
+text-decoration: none;
+background: #FF5733;
+color: white;
+padding: 10px 25px;
+border-radius: 30px;
+font-size: 1em;
+font-weight: bold;
+transition: all 0.3s ease;
+
+}
+
+a:hover {
+background: #C70039;
+transform: translateY(-5px);
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+}
+a {
+padding: 10px 20px;
+font-size: 0.9em;
+}
+
+
+</style>
+</head>
+<body>
+<h1>Crop Production Duration in Tamil Nadu</h1>
+<div class="container">
+<p class="description">Here you can visualize the total production duration of various crops across districts in Tamil Nadu.</p>
+<!-- Chart container -->
+<canvas id="cropChart"></canvas>
+</div>
+
+<script>
+// Data for the crops and their total production duration (in days)
+var cropData = {
+labels: [
+"Dindigul (Tomato)", "Villupuram (Brinjal)", "Erode (Onion)", "Coimbatore (Cabbage)",
+"Kodaikanal (Carrot)", "Tirunelveli (Banana)", "Salem (Mango)", "Kanyakumari (Papaya)",
+"Vellore (Guava)", "Tiruvannamalai (Pineapple)", "Krishnagiri (Potato)", "Thanjavur (Rice)",
+"Kanchipuram (Green Chilies)", "Nilgiri (Tea)"
+],
+datasets: [{
+label: 'Total Duration (Days)',
+data: [
+150, 150, 150, 180, 120, 365, 180, 365, 120, 730, 120, 180, 150, 1460
+],
+backgroundColor: [
+'rgba(75, 192, 192, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 99, 132, 0.2)',
+'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)',
+'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)',
+'rgba(153, 102, 255, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(255, 159, 64, 0.2)',
+'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'
+],
+borderColor: [
+'rgba(75, 192, 192, 1)', 'rgba(255, 159, 64, 1)', 'rgba(255, 99, 132, 1)',
+'rgba(54, 162, 235, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)',
+'rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)',
+'rgba(153, 102, 255, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 159, 64, 1)',
+'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'
+],
+borderWidth: 1
+}]
+};
+
+// Create the chart
+var ctx = document.getElementById('cropChart').getContext('2d');
+var cropChart = new Chart(ctx, {
+type: 'bar',
+data: cropData,
+options: {
+responsive: true,
+scales: {
+y: {
+beginAtZero: true,
+title: {
+display: true,
+text: 'Total Duration (Days)'
+}
+},
+x: {
+title: {
+display: true,
+text: 'Crops in Tamil Nadu'
+},
+ticks: {
+maxRotation: 90,
+minRotation: 45
+}
+}
+},
+plugins: {
+legend: {
+display: false
+},
+tooltip: {
+callbacks: {
+title: function(tooltipItem) {
+return tooltipItem[0].label;
+},
+label: function(tooltipItem) {
+return "Duration: " + tooltipItem.raw + " days";
+}
+}
+},
+datalabels: {
+anchor: 'end',
+align: 'top',
+font: {
+weight: 'bold'
+},
+color: 'black',
+formatter: function(value) {
+return value + " days";
+}
+}
+}
+}
+});
+</script>
+<center><a href="{{ url_for('index') }}">back to home</a></center>
+</body>
+</html>
