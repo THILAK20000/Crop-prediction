@@ -64,7 +64,6 @@ text-decoration: underline;
 .link:hover {
 text-decoration: none;
 }
-
 .flash-message {
 margin-bottom: 15px;
 padding: 10px;
@@ -73,7 +72,6 @@ color: white;
 border-radius: 4px;
 text-align: center;
 }
-
 .flash-message.error {
 background-color: #dc3545;
 }
@@ -82,8 +80,6 @@ background-color: #dc3545;
 <body>
 <div class="container">
 <h1 style="text-align: center;">Sign In</h1>
-
-
 {% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
 <div class="flash-message {% if messages[0][0] == 'error' %}error{% endif %}">
@@ -93,7 +89,6 @@ background-color: #dc3545;
 </div>
 {% endif %}
 {% endwith %}
-
 <form action="{{ url_for('sign') }}" method="POST">
 <table>
 <tr>
