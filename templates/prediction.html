@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prediction Results</title>
+<style>
+body {
+font-family: 'Arial', sans-serif;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background-image: url('{{ url_for('static', filename='m9.jpg') }}');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.container {
+text-align: center;
+background: rgba(0, 0, 0, 0.6);
+padding: 10px;
+border-radius: 10px;
+box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+max-width: 500px;
+height:auto;
+width: 90%;
+color: white;
+}
+.section-title {
+font-size: 1.5em;
+font-weight: bold;
+color: #FFD700;
+border-bottom: 2px solid #FFD700;
+display: inline-block;
+padding-bottom: 5px;
+}
+h1 {
+text-align: center;
+color: #4CAF50;
+font-weight:bold;
+font-size: 2.5em;
+text-shadow:1px 1px white;
+}
+.info, .output {
+text-align: center;
+}
+
+p {
+font-size: 1.1em;
+margin: 8px 0;
+}
+.lab {
+color: black;
+font-weight: bold;
+font-family: 'Arial Rounded MT Bold', serif;
+}
+.label {
+color: #4CAF50;
+font-weight: bold;
+font-family: 'Arial Rounded MT Bold', serif;
+}
+.value {
+color:white;
+font-weight: normal;
+font-family: 'Arial Rounded MT Bold', serif;
+}
+.crop-image-container {
+text-align: center;
+}
+.crop-image {
+ max-width: 100px;
+ height: 100px;
+ border: 1px solid #ddd;
+ border-radius: 5px;
+}
+
+a {
+display: inline-block;
+text-decoration: none;
+background: #FF5733;
+color: white;
+padding: 10px 25px;
+border-radius: 30px;
+font-size: 1em;
+font-weight: bold;
+transition: all 0.3s ease;
+}
+
+a:hover {
+background: #C70039;
+transform: translateY(-5px);
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 480px) {
+.section-title {
+font-size: 1.3em;
+}
+
+p {
+font-size: 1em;
+}
+
+a {
+padding: 10px 20px;
+font-size: 0.9em;
+}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Prediction </h1>
+<div class="info">
+<div class="section-title">User Inputs</div>
+<p><span class="lab">Soil Type:</span> <span class="value">{{ soil_type }}</span></p>
+<p><span class="lab">Season:</span> <span class="value">{{ season }}</span></p>
+<p><span class="lab">State:</span> <span class="value">{{ state }}</span></p>
+<p><span class="lab">District:</span> <span class="value">{{ district }}</span></p>
+</div>
+<div class="output">
+<div class="section-title">Prediction Results</div>
+{% if chemical %}
+<p><span class="label">Crop:</span> <span class="value">{{ crop_name }}</span></p>
+<p><span class="label">Crop Season:</span> <span class="value">{{ crop_season }}</span></p>
+<p><span class="label">Chemical:</span> <span class="value">{{ chemical }}</span></p>
+<p><span class="label">Duration:</span> <span class="value">{{ duration }}</span></p>
+<p><span class="label">Description:</span> <span class="value">{{ description }}</span></p>
+ <div class="crop-image-container">
+ <img src="{{ crop_image }}" alt="{{ crop_name }}" class="crop-image">
+ </div>
+{% else %}
+<p>No prediction available.</p>
+{% endif %}
+</div>
+
+<a href="{{ url_for('index') }}">Make Another Prediction</a>
+</div>
+</body>
+</html>

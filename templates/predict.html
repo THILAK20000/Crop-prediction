@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crop Prediction</title>
+<style>
+/* Reset default browser styles */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Arial', sans-serif;
+background-image:  url('{{ url_for('static', filename='m3.jpg') }}');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+
+h1 {
+text-align: center;
+font-family: 'Arial Rounded MT Bold', serif;
+font-size: 50px;
+color: black;
+text-shadow:1px 1px white;
+margin-bottom: 30px;
+}
+
+form {
+width: 100%;
+max-width: 500px;
+padding: 25px;
+border-radius: 8px;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+background: rgba(0, 0, 0, 0.1);
+}
+
+label {
+display: block;
+margin-bottom: 10px;
+font-weight: bold;
+color: black;
+font-size: 16px;
+}
+
+input, select, button {
+width: 100%;
+padding: 12px;
+margin-bottom: 15px;
+border-radius: 8px;
+border: 1px solid lightgray;
+font-size: 16px;
+font-weight:bold;
+transition: all 0.3s ease-in-out;
+}
+
+input:focus, select:focus, button:focus {
+border-color: #4CAF50;
+outline: none;
+}
+
+button {
+background-color: #4CAF50;
+color: white;
+border: none;
+font-size: 18px;
+font-weight:bold;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+button:hover {
+background-color: #45a049;
+}
+
+.readonly-input {
+background-color: #f4f4f4;
+cursor: not-allowed;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+form {
+padding: 20px;
+width: 90%;
+}
+}
+
+</style>
+</head>
+<body>
+
+<div class="form-container">
+<h1>Crop Prediction</h1>
+<form action="{{ url_for('predict') }}" method="POST">
+<label for="soil_type">Soil Type:</label>
+<select name="soil_type" id="soil_type" required>
+<option value="">Select a soil type</option>
+<option value="Loamy">Loamy</option>
+<option value="Clay">Clay</option>
+<option value="Sandy">Sandy</option>
+<option value="Saline">Saline</option>
+</select>
+
+<label for="season">Weather:</label>
+<select name="season" id="season" required>
+<option value="">Select a season</option>
+<option value="Kharif">Kharif (June - September)</option>
+<option value="Rabi">Rabi (October - February)</option>
+<option value="Zaid">Zaid (March - May)</option>
+</select>
+
+<label for="state">State:</label>
+<input type="text" id="state" name="state" value="Tamil Nadu" readonly class="readonly-input">
+
+<label for="district">District:</label>
+<select id="district" name="district" required>
+<option value="">Select a district</option>
+<option value="Dindigul">Dindigul</option>
+<option value="Villupuram">Villupuram</option>
+<option value="Erode">Erode</option>
+<option value="Coimbatore">Coimbatore</option>
+<option value="Kodaikanal">Kodaikanal</option>
+<option value="Tirunelveli">Tirunelveli</option>
+<option value="Salem">Salem</option>
+<option value="Kanyakumari">Kanyakumari</option>
+<option value="Vellore">Vellore</option>
+<option value="Tiruvannamalai">Tiruvannamalai</option>
+<option value="Krishnagiri">Krishnagiri</option>
+<option value="Thanjavur">Thanjavur</option>
+<option value="Kanchipuram">Kanchipuram</option>
+<option value="Nilgiri">Nilgiri</option>
+</select>
+
+<button type="submit">Predict</button>
+</form>
+</div>
+
+</body>
+</html>

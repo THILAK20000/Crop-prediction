@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+font-weight: bold;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+background-image:  url('{{ url_for('static', filename='m10.jpg') }}');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+
+}
+.container {
+background-color: rgba(255, 255, 255, 0.1);
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+max-width: 500px;
+width: 100%;
+background: rgba(0, 0, 0, 0.1);
+}
+h1 {
+text-align: center;
+margin-bottom: 20px;
+}
+form div {
+margin-bottom: 15px;
+}
+label {
+display: block;
+font-size: 1em;
+margin-bottom: 5px;
+}
+input[type="text"],
+input[type="password"],
+textarea {
+width: 95%;
+padding: 10px;
+border: none;
+border-radius: 4px;
+font-size: 1em;
+font-weight:bold;
+resize: none;
+}
+textarea {
+height: 60px;
+}
+button {
+width: 100%;
+background-color: #ff6f61;
+color: white;
+border: none;
+padding: 10px;
+border-radius: 4px;
+font-size: 1em;
+cursor: pointer;
+}
+button:hover {
+background-color: #e65c51;
+}
+.link {
+display: block;
+text-align: center;
+margin-top: 15px;
+color: black;
+text-decoration: underline;
+}
+.link:hover {
+text-decoration: none;
+}
+@media (max-width: 480px) {
+.container {
+padding: 15px;
+}
+button {
+font-size: 0.9em;
+}
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Sign Up</h1>
+<form action="{{ url_for('signup') }}" method="POST">
+<div>
+<label for="username">Username:</label>
+<input type="text" name="username" id="username" required autofocus>
+</div>
+<div>
+<label for="password">Password:</label>
+<input type="password" name="password" id="password" required>
+</div>
+<div>
+<label for="phone_number">Phone Number:</label>
+<input type="text" name="phone_number" id="phone_number" required pattern="\d{10}" title="Phone number must be 10 digits">
+
+</div>
+<div>
+<label for="aadhar_number">Aadhar Number:</label>
+<input type="text" name="aadhar_number" id="aadhar_number" required pattern="\d{12}" title="Aadhar number must be 12 digits">
+</div>
+<div>
+<label for="address">Address:</label>
+<textarea name="address" id="address" required></textarea>
+</div>
+<button type="submit"><b>Sign Up</b></button>
+<button type="reset"><b>Clear</b></button>
+
+</form>
+<a href="{{ url_for('sign') }}" class="link"><font color="black">Already have an account? Sign In</font></a>
+</div>
+</body>
+</html>
