@@ -119,28 +119,21 @@ font-weight: bold;
 transition: all 0.3s ease;
 
 }
-
 a:hover {
 background: #C70039;
 transform: translateY(-5px);
 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-
 }
 a {
 padding: 10px 20px;
 font-size: 0.9em;
 }
-
 </style>
 </head>
 <body>
 <h1>Data Analysis</h1>
 <div class="container">
 <p>Upload your dataset to begin analyzing or select a region to view crop details.</p>
-
-
-
-
 <div class="dropdown">
 <label for="regionSelect"><b>Select a Region:</b></label>
 <select id="regionSelect">
@@ -161,16 +154,13 @@ font-size: 0.9em;
 <option value="Nilgiri">Nilgiri</option>
 </select>
 </div>
-
 <div id="analysisResults" class="analysis-results">
 <p class="no-selection"><font color="white">Select a region to view crop and chemical details here.</font></p>
 </div>
-
 <div class="button-container">
 <button onclick="resetSelection()" style="padding: 12px 24px; font-size: 1.1em; background-color: #f44336; color: white; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;"><b>Reset</b></button>
 </div>
 </div>
-
 <script>
 const regionData = {
 "Dindigul": {
@@ -308,7 +298,6 @@ stages: [
 duration: "Total Duration: 6-12 months for Maturity & Harvesting"
 }
 };
-
 document.getElementById("regionSelect").addEventListener("change", function () {
 const region = this.value;
 const resultDiv = document.getElementById("analysisResults");
@@ -334,6 +323,5 @@ document.getElementById("analysisResults").innerHTML = "<p class='no-selection'>
 }
 </script>
 <center><a href="{{ url_for('index') }}">back to home</a></center>
-
 </body>
 </html>
