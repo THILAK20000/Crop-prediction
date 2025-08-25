@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Crop Prediction App to predict crop yields based on data analysis.">
+<title>Home - Crop Prediction App</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-image:  url('{{ url_for('static', filename='m12.jpg') }}');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+height: 93vh;
+width: 100%;
+}
+h1 {
+text-align: center;
+font-size: 40px;
+font-weight:bold;
+color: black;
+margin-top: 50px;
+}
+
+nav {
+display: flex;
+justify-content: center;
+margin-top: 30px;
+flex-wrap: wrap;
+gap: 20px;
+}
+
+nav ul {
+list-style-type: none;
+padding: 0;
+display: flex;
+gap: 30px;
+}
+
+nav ul li {
+font-size: 18px;
+font-weight:bold;
+}
+
+nav a {
+text-decoration: none;
+color: #007bff;
+padding: 8px 16px;
+border-radius: 5px;
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+background-color: #007bff;
+color: white;
+}
+
+nav a:active {
+background-color: #0056b3;
+}
+
+
+nav a.active {
+background-color: #0056b3;
+color: white;
+}
+
+footer {
+background-color: #333;
+color: white;
+text-align: center;
+padding: 15px;
+position: fixed;
+width: 100%;
+bottom: 0;
+}
+
+footer a {
+color: white;
+text-decoration: none;
+}
+
+footer a:hover {
+text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+nav ul {
+flex-direction: column;
+align-items: center;
+}
+}
+</style>
+</head>
+<body>
+<h1>Welcome to the Crop Prediction App</h1>
+
+<nav>
+<ul>
+<li><a href="{{ url_for('upload') }}" class="{{ 'active' if request.endpoint == 'upload' else '' }}">Upload Dataset</a></li>
+<li><a href="{{ url_for('analysis') }}" class="{{ 'active' if request.endpoint == 'analysis' else '' }}">Data Analysis</a></li>
+<li><a href="{{ url_for('chart') }}" class="{{ 'active' if request.endpoint == 'chart' else '' }}">Charts</a></li>
+<li><a href="{{ url_for('predict') }}" class="{{ 'active' if request.endpoint == 'predict' else '' }}">Crop Prediction</a></li>
+<li><a href="{{ url_for('video') }}" class="{{ 'active' if request.endpoint == 'video' else '' }}">Introductory Video</a></li>
+
+{% if 'username' in session %}
+<!-- Show Logout link if user is logged in -->
+<li><a href="{{ url_for('logout') }}" class="logout">Logout</a></li>
+{% else %}
+<!-- Show Sign In link if user is not logged in -->
+<li><a href="{{ url_for('sign') }}" class="sign-in">Sign In</a></li>
+{% endif %}
+</ul>
+</nav>
+
+<footer>
+<p>&copy; 2024 Crop Prediction App | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+</footer>
+</body>
+</html>

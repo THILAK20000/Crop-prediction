@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analysis</title>
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin: 0;
+padding: 0;
+background-image:  url('{{ url_for('static', filename='m2.jpg') }}');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+height: 108vh;
+width: 95%;
+}
+.container {
+max-width: 800px;
+margin: 0px auto;
+padding: 10px;
+border: 2px solid transparent ;
+border-radius: 12px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+background: rgba(0, 0, 0, 0.0);
+}
+h1 {
+text-align: center;
+color: #4CAF50;
+text-shadow:2px 1px white;
+font-weight:bold;
+font-size: 2.5em;
+margin-bottom: 20px;
+}
+p {
+text-align: center;
+font-size: 1.2em;
+font-weight:bold;
+margin-bottom: 20px;
+color: black;
+}
+
+label {
+background-color: #4CAF50;
+color: white;
+padding: 12px 24px;
+border-radius: 6px;
+cursor: pointer;
+font-size: 1.2em;
+transition: background-color 0.3s;
+}
+label:hover {
+background-color: #45a049;
+}
+.dropdown {
+margin: 20px 0;
+text-align: center;
+}
+select {
+padding: 12px;
+font-size: 1.1em;
+font-weight:bold;
+border-radius: 8px;
+border: 2px solid LightGray;
+background-color: white;
+width: 250px;
+transition: border-color 0.3s;
+}
+select:hover, select:focus {
+border-color: #4CAF50;
+}
+.analysis-results {
+border: px solid LightGray;
+padding: 20px;
+background: rgba(0, 0, 0, 0.2);
+border-radius: 8px;
+}
+.analysis-results h2 {
+color: black;
+text-shadow:1px 1px white;
+font-size: 2em;
+text-align: center;
+}
+.analysis-results ul {
+list-style-type: none;
+padding: 0;
+}
+.analysis-results ul li {
+background-color: white;
+padding: 10px;
+border-radius: 6px;
+border: 1px solid LightGray;
+transition: background-color 0.3s;
+}
+.analysis-results ul li:hover {
+background-color: #f1f1f1;
+}
+.analysis-results ul li strong {
+color: #4CAF50;
+}
+.no-selection {
+text-align: center;
+font-size: 1.2em;
+color: #aaa;
+}
+.button-container {
+text-align: center;
+}
+a {
+display: inline-block;
+text-decoration: none;
+background: #FF5733;
+color: white;
+padding: 10px 25px;
+border-radius: 30px;
+font-size: 1em;
+font-weight: bold;
+transition: all 0.3s ease;
+
+}
+
+a:hover {
+background: #C70039;
+transform: translateY(-5px);
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+}
+a {
+padding: 10px 20px;
+font-size: 0.9em;
+}
+
+</style>
+</head>
+<body>
+<h1>Data Analysis</h1>
+<div class="container">
+<p>Upload your dataset to begin analyzing or select a region to view crop details.</p>
+
+
+
+
+<div class="dropdown">
+<label for="regionSelect"><b>Select a Region:</b></label>
+<select id="regionSelect">
+<option value="">--Select--</option>
+<option value="Dindigul">Dindigul</option>
+<option value="Villupuram">Villupuram</option>
+<option value="Erode">Erode</option>
+<option value="Coimbatore">Coimbatore</option>
+<option value="Kodaikanal">Kodaikanal</option>
+<option value="Tirunelveli">Tirunelveli</option>
+<option value="Salem">Salem</option>
+<option value="Kanyakumari">Kanyakumari</option>
+<option value="Vellore">Vellore</option>
+<option value="Tiruvannamalai">Tiruvannamalai</option>
+<option value="Krishnagiri">Krishnagiri</option>
+<option value="Thanjavur">Thanjavur</option>
+<option value="Kanchipuram">Kanchipuram</option>
+<option value="Nilgiri">Nilgiri</option>
+</select>
+</div>
+
+<div id="analysisResults" class="analysis-results">
+<p class="no-selection"><font color="white">Select a region to view crop and chemical details here.</font></p>
+</div>
+
+<div class="button-container">
+<button onclick="resetSelection()" style="padding: 12px 24px; font-size: 1.1em; background-color: #f44336; color: white; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;"><b>Reset</b></button>
+</div>
+</div>
+
+<script>
+const regionData = {
+"Dindigul": {
+crop: "Tomato (Solanum lycopersicum)",
+stages: [
+{ stage: "Seedling (0-20 days)", chemical: "Apply fungicide (e.g., Mancozeb) to prevent early blight." },
+{ stage: "Vegetative (20-60 days)", chemical: "Use nitrogen-rich fertilizers (e.g., Urea) to promote leaf growth." },
+{ stage: "Flowering/Fruiting (60-90 days)", chemical: "Apply phosphorous fertilizers (e.g., SSP) for better fruit set." },
+],
+duration: "Total Duration: 90-150 days for Maturity & Harvesting"
+},
+"Villupuram": {
+crop: "Brinjal (Solanum melongena)",
+stages: [
+{ stage: "Pre-planting", chemical: "Apply 5-10 tons of farmyard manure (FYM) per acre." },
+{ stage: "Vegetative (20-40 days)", chemical: "Apply nitrogen fertilizer (e.g., Urea) and fungicide (e.g., Carbendazim)." },
+{ stage: "Flowering/Fruiting (40-80 days)", chemical: "Apply potassium (MOP) and insecticides (e.g., Chlorpyrifos)." },
+],
+duration: "Total Duration: 120-150 days for Maturity & Harvesting"
+},
+"Erode": {
+crop: "Onion (Allium cepa)",
+stages: [
+{ stage: "Pre-planting", chemical: "Apply 30-40 kg of phosphorus (e.g., DAP)." },
+{ stage: "Vegetative stage (20-40 days)", chemical: "Apply nitrogen (e.g., Urea) and irrigation to promote early growth." },
+{ stage: "Bulbing stage (40-60 days)", chemical: "Apply potassium-based fertilizers (e.g., MOP) for better bulb growth." },
+{ stage: "Pest/Disease control", chemical: "Apply fungicides (e.g., Mancozeb) during high humidity conditions." },
+],
+duration: "Total Duration: 90-150 days for Maturity & Harvesting"
+},
+"Coimbatore": {
+crop: "Cabbage (Brassica oleracea)",
+stages: [
+{ stage: "Pre-planting", chemical: "Apply 15-20 tons of well-decomposed organic manure." },
+{ stage: "Vegetative stage (15-40 days)", chemical: "Apply nitrogen fertilizer (e.g., Urea) to promote leafy growth." },
+{ stage: "Head formation (40-60 days)", chemical: "Apply phosphorus (e.g., DAP) and potassium (e.g., MOP) to aid head development." },
+{ stage: "Pest/Disease control", chemical: "Apply pesticides (e.g., Lambda-cyhalothrin) for pests like aphids and caterpillars." },
+],
+duration: "Total Duration: 90-180 days for Maturity & Harvesting"
+},
+"Kodaikanal": {
+crop: "Carrot (Daucus carota)",
+stages: [
+{ stage: "Pre-planting", chemical: "Incorporate well-rotted farmyard manure (FYM) into the soil." },
+{ stage: "Vegetative stage (20-40 days)", chemical: "Apply nitrogen (e.g., Urea) for leafy growth." },
+{ stage: "Root development (40-60 days)", chemical: "Apply potassium fertilizers (e.g., Potassium nitrate) for better root growth." },
+{ stage: "Pest/Disease control", chemical: "Apply insecticides (e.g., Endosulfan) for controlling aphids and root flies." },
+],
+duration: "Total Duration: 80-120 days for Maturity & Harvesting"
+},
+"Tirunelveli": {
+crop: "Banana (Musa spp.)",
+stages: [
+{ stage: "Pre-planting", chemical: "Apply 15-20 tons of organic manure." },
+{ stage: "Vegetative growth (0-90 days)", chemical: "Apply nitrogen (e.g., Urea) and potassium (e.g., MOP) for healthy leaf and root development." },
+{ stage: "Flowering & Fruiting (90-180 days)", chemical: "Use a combination of nitrogen, phosphorus, and potassium (NPK) for optimal fruit production." },
+{ stage: "Pest/Disease control", chemical: "Apply fungicides (e.g., Propiconazole) for controlling leaf spot diseases." },
+],
+duration: "Total Duration: 9-12 months for Maturity & Harvesting"
+},
+"Salem": {
+crop: "Mango (Mangifera indica)",
+stages: [
+{ stage: "Pre-flowering (November - December)", chemical: "Apply potassium fertilizers (e.g., MOP) for flowering." },
+{ stage: "Flowering (January - March)", chemical: "Foliar sprays of potassium and magnesium." },
+{ stage: "Post-flowering & Fruit development (April - May)", chemical: "Apply phosphorus-based fertilizers to enhance fruit set." },
+{ stage: "Pest/Disease control", chemical: "Apply pesticides (e.g., Malathion) for controlling mango weevil." },
+],
+duration: "Total Duration: 4-5 years for first harvest."
+},
+"Kanyakumari": {
+crop: "Pepper (Piper nigrum)",
+stages: [
+{ stage: "Pre-planting", chemical: "Apply organic manure and well-decomposed compost." },
+{ stage: "Vegetative growth (0-90 days)", chemical: "Apply nitrogen fertilizer (e.g., Urea) to promote healthy vine growth." },
+{ stage: "Flowering & Fruiting (90-180 days)", chemical: "Use potassium (e.g., MOP) for fruit development and maturity." },
+{ stage: "Pest/Disease control", chemical: "Apply fungicide (e.g., Captan) to control fungal diseases like anthracnose." },
+],
+duration: "Total Duration: 2-3 years for full crop yield."
+},
+"Vellore": {
+crop: "Groundnut (Arachis hypogaea)",
+stages: [
+{ stage: "Pre-planting", chemical: "Incorporate organic fertilizers and lime for soil pH correction." },
+{ stage: "Vegetative (0-40 days)", chemical: "Apply nitrogen fertilizers (e.g., Urea) to support leaf and root growth." },
+{ stage: "Flowering & Fruiting (40-90 days)", chemical: "Apply phosphorus and potassium fertilizers for enhanced pod development." },
+],
+duration: "Total Duration: 100-120 days for Maturity & Harvesting"
+},
+"Tiruvannamalai": {
+crop: "Chili (Capsicum annuum)",
+stages: [
+{ stage: "Pre-planting", chemical: "Apply well-decomposed organic manure (e.g., FYM) to improve soil fertility." },
+{ stage: "Vegetative stage (0-30 days)", chemical: "Use nitrogen fertilizers (e.g., Urea) to support leaf growth." },
+{ stage: "Flowering & Fruiting (30-60 days)", chemical: "Apply potassium and phosphorus for fruit development." },
+],
+duration: "Total Duration: 90-120 days for Maturity & Harvesting"
+},
+"Krishnagiri": {
+crop: "Tomato (Solanum lycopersicum)",
+stages: [
+{ stage: "Seedling (0-20 days)", chemical: "Apply fungicide (e.g., Mancozeb) to prevent early blight." },
+{ stage: "Vegetative (20-60 days)", chemical: "Use nitrogen-rich fertilizers (e.g., Urea) to promote leaf growth." },
+{ stage: "Flowering/Fruiting (60-90 days)", chemical: "Apply phosphorous fertilizers (e.g., SSP) for better fruit set." },
+],
+duration: "Total Duration: 90-150 days for Maturity & Harvesting"
+},
+"Thanjavur": {
+crop: "Rice (Oryza sativa)",
+stages: [
+{ stage: "Pre-planting", chemical: "Apply 20-30 tons of FYM per acre." },
+{ stage: "Vegetative growth (0-30 days)", chemical: "Apply nitrogen fertilizers for healthy leaf growth." },
+{ stage: "Reproductive phase (30-60 days)", chemical: "Apply phosphorus and potassium fertilizers for grain filling." },
+{ stage: "Maturity (60-90 days)", chemical: "No chemicals needed." },
+],
+duration: "Total Duration: 3-6 months for Maturity & Harvesting"
+},
+"Kanchipuram": {
+crop: "Cucumber (Cucumis sativus)",
+stages: [
+{ stage: "Pre-planting", chemical: "Apply organic compost and well-rotted manure to improve soil fertility." },
+{ stage: "Vegetative growth (0-30 days)", chemical: "Apply nitrogen fertilizers (e.g., Urea) to encourage vine growth." },
+{ stage: "Flowering & Fruiting (30-60 days)", chemical: "Apply potassium-based fertilizers (e.g., MOP) for better fruit development." },
+],
+duration: "Total Duration: 60-90 days for Maturity & Harvesting"
+},
+"Nilgiri": {
+crop: "Apple (Malus domestica)",
+stages: [
+{ stage: "Pre-planting", chemical: "Use well-rotted organic manure to enrich the soil." },
+{ stage: "Vegetative growth (0-120 days)", chemical: "Apply nitrogen fertilizers for leaf and shoot development." },
+{ stage: "Flowering & Fruiting (120-180 days)", chemical: "Use a balanced NPK fertilizer for fruit production." },
+{ stage: "Pest/Disease control", chemical: "Apply fungicides (e.g., Mancozeb) for controlling apple scab." },
+],
+duration: "Total Duration: 6-12 months for Maturity & Harvesting"
+}
+};
+
+document.getElementById("regionSelect").addEventListener("change", function () {
+const region = this.value;
+const resultDiv = document.getElementById("analysisResults");
+if (region && regionData[region]) {
+ const cropDetails = regionData[region];
+let resultHTML = `<h2>${cropDetails.crop}</h2>`;
+resultHTML += `<p><strong><span style="color: white;">Duration:</span></strong> <span style="color: white;">${cropDetails.duration}</span></p>`;
+resultHTML += "<ul>";
+cropDetails.stages.forEach((stage) => {
+resultHTML += `<li><strong>${stage.stage}:</strong> ${stage.chemical}</li>`;
+});
+resultHTML += "</ul>";
+resultDiv.innerHTML = resultHTML;
+}
+else
+{
+resultDiv.innerHTML = "<p class='no-selection'>Select a region to view crop and chemical details here.</p>";
+}
+});
+function resetSelection() {
+document.getElementById("regionSelect").value = "";
+document.getElementById("analysisResults").innerHTML = "<p class='no-selection'>Select a region to view crop and chemical details here.</p>";
+}
+</script>
+<center><a href="{{ url_for('index') }}">back to home</a></center>
+
+</body>
+</html>
