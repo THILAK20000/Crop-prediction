@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +24,6 @@ font-weight:bold;
 color: black;
 margin-top: 50px;
 }
-
 nav {
 display: flex;
 justify-content: center;
@@ -45,7 +43,6 @@ nav ul li {
 font-size: 18px;
 font-weight:bold;
 }
-
 nav a {
 text-decoration: none;
 color: #007bff;
@@ -53,22 +50,17 @@ padding: 8px 16px;
 border-radius: 5px;
 transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 nav a:hover {
 background-color: #007bff;
 color: white;
 }
-
 nav a:active {
 background-color: #0056b3;
 }
-
-
 nav a.active {
 background-color: #0056b3;
 color: white;
 }
-
 footer {
 background-color: #333;
 color: white;
@@ -78,16 +70,13 @@ position: fixed;
 width: 100%;
 bottom: 0;
 }
-
 footer a {
 color: white;
 text-decoration: none;
 }
-
 footer a:hover {
 text-decoration: underline;
 }
-
 @media screen and (max-width: 768px) {
 nav ul {
 flex-direction: column;
@@ -98,7 +87,6 @@ align-items: center;
 </head>
 <body>
 <h1>Welcome to the Crop Prediction App</h1>
-
 <nav>
 <ul>
 <li><a href="{{ url_for('upload') }}" class="{{ 'active' if request.endpoint == 'upload' else '' }}">Upload Dataset</a></li>
@@ -106,7 +94,6 @@ align-items: center;
 <li><a href="{{ url_for('chart') }}" class="{{ 'active' if request.endpoint == 'chart' else '' }}">Charts</a></li>
 <li><a href="{{ url_for('predict') }}" class="{{ 'active' if request.endpoint == 'predict' else '' }}">Crop Prediction</a></li>
 <li><a href="{{ url_for('video') }}" class="{{ 'active' if request.endpoint == 'video' else '' }}">Introductory Video</a></li>
-
 {% if 'username' in session %}
 <!-- Show Logout link if user is logged in -->
 <li><a href="{{ url_for('logout') }}" class="logout">Logout</a></li>
@@ -116,7 +103,6 @@ align-items: center;
 {% endif %}
 </ul>
 </nav>
-
 <footer>
 <p>&copy; 2024 Crop Prediction App | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
 </footer>
