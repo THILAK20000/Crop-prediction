@@ -7,7 +7,6 @@
 <style>
 body {
 font-family: Arial, sans-serif;
-
 margin: 0;
 padding: 0;
 background-image:  url('{{ url_for('static', filename='m5.jpg') }}');
@@ -15,7 +14,6 @@ background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
 }
-
 h1 {
 text-align: center;
 font-size:50px;
@@ -23,14 +21,12 @@ margin-top: 30px;
 color:#4CAF50;
 text-shadow:2px 4px black;
 }
-
 .video-container {
 display: flex;
 flex-wrap: wrap;
 justify-content: space-around;
 margin: 20px;
 }
-
 .video-container div {
 background: rgba(0, 0, 0, 0.3);
 border: 0px solid #ddd;
@@ -41,42 +37,34 @@ width: 300px;
 text-align: center;
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .video-container video {
 width: 100%;
 border-radius: 8px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .video-container h2 {
 font-size: 18px;
 color: black;
 margin: 10px 0;
 transition: color 0.3s ease;
 }
-
 .video-container div:hover {
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 transform: scale(1.05);
 }
-
 .video-container h2:hover {
 color: #4CAF50;
 }
-
 .video-description {
 font-size: 14px;
 color: white;
 margin-top: 10px;
 }
-
-/* Responsive Design */
 @media screen and (max-width: 768px) {
 .video-container div {
 width: 45%;
 }
 }
-
 @media screen and (max-width: 480px) {
 .video-container div {
 width: 90%;
@@ -92,25 +80,20 @@ border-radius: 30px;
 font-size: 1em;
 font-weight: bold;
 transition: all 0.3s ease;
-
 }
-
 a:hover {
 background: #C70039;
 transform: translateY(-5px);
 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-
 }
 a {
 padding: 10px 20px;
 font-size: 0.9em;
 }
-
 </style>
 </head>
 <body>
 <h1>Video Gallery</h1>
-
 <div class="video-container">
 <div>
 <h2>My Village Life</h2>
@@ -119,7 +102,6 @@ font-size: 0.9em;
 </video>
 <p class="video-description">A glimpse into the daily life of a village community, showcasing agriculture and rural traditions.</p>
 </div>
-
 <div>
 <h2>Rice Crop Farming Process</h2>
 <video controls height="170">
@@ -127,7 +109,6 @@ font-size: 0.9em;
 </video>
 <p class="video-description">Watch the entire process of rice farming, from planting to harvest.</p>
 </div>
-
 <div>
 <h2>Onion Crop Farming Process</h2>
 <video controls height="170">
@@ -135,7 +116,6 @@ font-size: 0.9em;
 </video>
 <p class="video-description">Learn how onions are grown, harvested, and prepared for market.</p>
 </div>
-
 <div>
 <h2>Tomato Crop Farming Process</h2>
 <video controls height="170">
@@ -143,7 +123,6 @@ font-size: 0.9em;
 </video>
 <p class="video-description">Discover the steps involved in growing tomatoes, from seed to harvest.</p>
 </div>
-
 <div>
 <h2>Brinjal Crop Farming Process</h2>
 <video controls height="170">
@@ -151,7 +130,6 @@ font-size: 0.9em;
 </video>
 <p class="video-description">Watch how brinjal (eggplant) crops are cultivated and harvested.</p>
 </div>
-
 <div>
 <h2>Potato Crop Farming Process</h2>
 <video controls height="170">
@@ -159,7 +137,6 @@ font-size: 0.9em;
 </video>
 <p class="video-description">See the full process of potato farming, from planting to storage.</p>
 </div>
-
 <div>
 <h2>Cabbage Crop Farming Process</h2>
 <video controls height="170">
@@ -167,7 +144,6 @@ font-size: 0.9em;
 </video>
 <p class="video-description">Learn how cabbage is cultivated, harvested, and prepared for sale.</p>
 </div>
-
 <div>
 <h2>Carrot Crop Farming Process</h2>
 <video controls height="170">
@@ -175,7 +151,6 @@ font-size: 0.9em;
 </video>
 <p class="video-description">Explore the journey of growing carrots, from sowing seeds to harvesting.</p>
 </div>
-
 <div>
 <h2>Banana Crop Farming Process</h2>
 <video controls height="170">
@@ -185,6 +160,5 @@ font-size: 0.9em;
 </div>
 </div>
 <center><a href="{{ url_for('index') }}">back to home</a></center>
-
 </body>
 </html>
