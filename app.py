@@ -205,7 +205,6 @@ def predict():
                 flash("Prediction stored successfully!", "success")
             else:
                 flash("User not found!", "danger")
-
             cursor.close()
             db.close()
             return render_template('prediction.html', 
@@ -384,4 +383,5 @@ def logout():
     flash('Logged out successfully.', 'success')
     return redirect(url_for('sign'))
 if __name__ == '__main__':
+
    app.run(host='0.0.0.0', port=5000, debug=True)
