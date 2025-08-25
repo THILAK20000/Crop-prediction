@@ -54,21 +54,16 @@ border-radius: 30px;
 font-size: 1em;
 font-weight: bold;
 transition: all 0.3s ease;
-
 }
-
 a:hover {
 background: #C70039;
 transform: translateY(-5px);
 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-
 }
 a {
 padding: 10px 20px;
 font-size: 0.9em;
 }
-
-
 </style>
 </head>
 <body>
@@ -78,9 +73,7 @@ font-size: 0.9em;
 <!-- Chart container -->
 <canvas id="cropChart"></canvas>
 </div>
-
 <script>
-// Data for the crops and their total production duration (in days)
 var cropData = {
 labels: [
 "Dindigul (Tomato)", "Villupuram (Brinjal)", "Erode (Onion)", "Coimbatore (Cabbage)",
@@ -110,8 +103,6 @@ borderColor: [
 borderWidth: 1
 }]
 };
-
-// Create the chart
 var ctx = document.getElementById('cropChart').getContext('2d');
 var cropChart = new Chart(ctx, {
 type: 'bar',
